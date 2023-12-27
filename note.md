@@ -133,7 +133,43 @@ From the miniworld, we execute "Requirements collection and analysis" to get req
 - Estimate query pattern
 - Estimate growth
 
+#### Phase 6: Database System Implementation and Tuning
+
+- Create dtb schema with empty files - dtb admin
+- Reformat for load new dtb if needed
+- Implement transaction / test
+- Tuning continues with new requirements
+
 ## The entity-relationship model
 
-## The extended entity-relationship model
+- Natural view of realworld entities, relationships, attributes
+- Data independce + set theory, relation theory
+- Provide unified view of data
+- entity-relationship diagram is a tool for dtb design
+
+- Entity set: collection of entities of an entity types
+- Key attribute: value are distinct for each entity in entity set - identify - unique
+  - could be formed with several attributes
+- Complex attribute: Composite and multivalued ~ denoted using multivalued symbol
+- Weak entity type: entity types that don't have key attribute of their own
+
+## The enhanced entity-relationship model
+
+- Specialization
+  - Define subclass (with new attributes / relationships for each)
+- Generalization
+  - Supress difference among class - merge into 1 parent class
+- Union types
+- Disjoint (d): subclass must be disjoint (no entity in common)
+- Overlapping (o): not constraint to be disjoint
+
+# Chapter 3: The Relational Data Model
+
+## Concepts
+
+## Relation Schemas relations
+
+## Mapping an entity-relationship schema into a relational dtb schema
+
+## The relational algebra
 
