@@ -224,5 +224,38 @@ Foreign key (a set of attributes) of R1 that references R2:
 - Merged relation approach: merge 2 entity type (possible when both are total participation)
 - Cross-reference or relationship relation approach: set up new R for cross-ref PK of S and T (required for M:N relationship). R can be called lookup-table. FK(R_S), FK(R_T) = PK(S), PK(T). PK(R) can be either of the FK(R) and the other is unique key - this will need extra join operation
 
+### Step 4: Mapping of Binary 1:N relationship types
+
+- Reuse foreign key approach and relationship relation approach
+- For foreign key approach: use N-side as S (the one that add PK(T) as FK)
+- Relationship relation approach: Use PK of N-side as PK for relation
+  - all attribute is FK to 2 entity
+
+### Step 5: Mapping of binary M:N relationship types
+
+- Can ONLY use relationship relation approach
+- PK(R) = PK(S), PK(T)
+
+### Step 6: Mapping Multivalued Attributes
+
+- Each multivalued attributes A will create new R (PK(R) = PK(S) + simple_attributes R)
+
+### Step 7: Mapping of N-ary Relationship types
+
+Create new relation S
+FK(S) = PK(all entity use S)
+PK(S) usually = all FK(S) - PK(S where cardinality(S) == 1) but mininimum num of PK(S) is 2
+
+attributes(S) = FK(S)+simple_attribute(S)
+
+### Step 8: Mapping of Specialization or Generalization
+
+m subclasses -> m relation S_1 -> S_m
+superclass C with attributes(C) = k, a1, ..., an
+- Simplest case: one relation for C and m subclasses (PK(S) = PK(C))
+- Every entity of C is belong to one of the subclasses: only create m relations (PK(S) = 1 of PK(C), other PK(C) will be SecondaryK(S))
+- Subclass are disjoint: 1 relation with type attribute to describe subclass type
+- Subclass are overlapping: 1 relation with multiple type attributes (one-hot encoding)
+
 ## The relational algebra
 
