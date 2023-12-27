@@ -167,9 +167,62 @@ From the miniworld, we execute "Requirements collection and analysis" to get req
 
 ## Concepts
 
+Data model = data structure type + operators + integrity rule
+
+### Schema-based (explicit) constraints
+
+#### Domain constraints
+
+Within each tuple, each attribute A must be an atomic value from dom(A) (domain)
+
+#### Key constraints
+
+- Key uniqueness ~ minimal superkey
+- Can have more than 1 key (candidate keys: primary key and secondary keys)
+
+#### Entity integrity constraints
+
+No primary key value can be NULL
+
+#### Referential integrity constraint
+
+Between 2 relation schema R1 and R2
+Foreign key (a set of attributes) of R1 that references R2:
+- dom(FK,R1) = dom(PK,R2)
+- FK can be null
+
 ## Relation Schemas relations
 
 ## Mapping an entity-relationship schema into a relational dtb schema
+
+| ER Model | Relational Model |
+|---|---|
+| Entity type | Entity relation |
+| 1:1 or 1:N relationship type | Foreign key (or relationship relation) |
+| M:N relationship type | relationship relation and 2 foreign keys |
+| n-ary relationship type | relationship relation and n foreign keys |
+| simple attribute | attribute |
+| composite attribute | set of simple component attributes |
+| Multivalued attribute | relation and foreign key |
+| value set | domain |
+| key attribute | Primary/secondary key |
+
+### Step 1: Mapping of Regular Entity type
+
+- Create relation R of entity type E with all atributes of E (only simple component of a composite attribute)
+- Choose one of the primary key of E as of R (if it is composite in E -> convert into set in R)
+
+### Step 2: Mapping of Weak Entity Type
+
+- For weak entity type W of owner E, create R include all simple attributes (if it is composite -> split into all simple) as attributes of R
+- Primary key = PK of owner + partial key of W
+- FK = PK of owner
+
+### Step 3: Mapping of Binary 1:1 Relationship Types
+
+- Foreign key approach: choose S (better to chose one with total participation) FK of S includes PK of T. All simple attributes of R will be attributes of S
+- Merged relation approach: merge 2 entity type (possible when both are total participation)
+- Cross-reference or relationship relation approach: set up new R for cross-ref PK of S and T (required for M:N relationship). R can be called lookup-table. FK(R_S), FK(R_T) = PK(S), PK(T). PK(R) can be either of the FK(R) and the other is unique key - this will need extra join operation
 
 ## The relational algebra
 
